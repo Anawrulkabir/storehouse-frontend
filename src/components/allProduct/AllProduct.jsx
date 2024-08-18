@@ -1,10 +1,78 @@
-import { Link } from 'react-router-dom'
+/* eslint-disable react/prop-types */
+import { Link, useLocation, useParams } from 'react-router-dom'
 
 import SmallPriceTag from '../priceTag/SmallPriceTag'
 import { PaginationDemo } from '../pagination/PaginationDemo'
+import { Skeleton } from '@/components/ui/skeleton'
+import { useQuery } from '@tanstack/react-query'
+import { fetchProducts } from '../../api/productApi'
+import useAxiosCommon from '../../hooks/useAxiosCommon'
 
 export function AllProducts() {
-  const elements = Array.from({ length: 50 })
+  const skeleton = Array.from({ length: 9 })
+  const { search } = useLocation()
+  // console.log(search)
+  // const params = new URLSearchParams(search)
+  // const categoryName = params.get('categoryName')
+  // const subcategoryName = params.get('subcategoryName')
+  // const brandName = params.get('brandName')
+  // const minPrice = params.get('minPrice')
+  // const maxPrice = params.get('maxPrice')
+  // const startDate = params.get('startDate')
+  // const endDate = params.get('endDate')
+  // const relevance = params.get('relevance')
+  // const searchQuery = params.get('search')
+  // const sortBy = params.get('sortBy')
+  //
+  // const filters = {
+  //   categoryName,
+  //   subcategoryName,
+  //   brandName,
+  //   minPrice,
+  //   maxPrice,
+  //   startDate,
+  //   endDate,
+  //   relevance,
+  //   search,
+  //   sortBy,
+  //   searchQuery,
+  // }
+
+  // console.log(filters)
+
+  // const { data, isLoading, isError, error } = useQuery({
+  //   queryKey: ['products', filters],
+  //   queryFn: async () => await fetchProducts(filters),
+  // })
+
+  const axiosCommon = useAxiosCommon()
+  const {
+    data: products = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ['products', search],
+    queryFn: async () => {
+      const { data } = await axiosCommon.get(`/all${search}`)
+      return data
+    },
+  })
+
+  const links = [
+    'Bags',
+    'Drinkware',
+    'Electronics',
+    'Footware',
+    'Headwear',
+    'Hoodies',
+    'Jackets',
+    'Kids',
+    'Pets',
+    'Shirts',
+    'Stickers',
+  ]
+
+  console.log(products)
   return (
     <div className="flex min-h-screen ">
       <main className="flex min-h-[calc(100vh_-_theme(spacing.16))]  flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 border-r ">
@@ -13,22 +81,14 @@ export function AllProducts() {
         </div>
         <div className="mx-auto grid w-full  items-start gap-6 ">
           <nav className="grid gap-4 text-sm text-muted-foreground sticky">
-            <Link href="#" className="font-semibold text-primary">
+            <Link to="/all" className="font-semibold text-primary">
               All
             </Link>
-
-            <Link href="#">Bags</Link>
-            <Link href="#">Drinkware</Link>
-            <Link href="#">Electronics</Link>
-            <Link href="#">Footware</Link>
-            <Link href="#">Headwear</Link>
-            <Link href="#">Hoodies</Link>
-            <Link href="#">Headwear</Link>
-            <Link href="#">Jackets</Link>
-            <Link href="#">Kids</Link>
-            <Link href="#">Pets</Link>
-            <Link href="#">Shirts</Link>
-            <Link href="#">Stickers</Link>
+            {links.map((link, index) => (
+              <Link key={index} to={`/all?subcategoryName=${link}`}>
+                {link}
+              </Link>
+            ))}
           </nav>
         </div>
       </main>
@@ -38,16 +98,28 @@ export function AllProducts() {
           Explore Our Products
         </h1>
         <div className="grid grid-cols-3 gap-3  p-4">
-          {elements.map((_, index) => (
-            <div key={index} className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
-                alt="Photo by Drew Beamer"
-                className="rounded-md object-cover hover:border-2 hover:border-blue-600"
-              />
-              <SmallPriceTag />
-            </div>
-          ))}
+          {isLoading
+            ? skeleton.map((_, index) => (
+                <Skeleton
+                  key={index}
+                  className="h-[165px] w-[265px] rounded-xl"
+                />
+              ))
+            : products?.map((item, index) => (
+                <div key={index} className="relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+                    alt="Photo by Drew Beamer"
+                    className="rounded-md object-cover hover:border-2 hover:border-blue-600"
+                  />
+                  <SmallPriceTag
+                    details={{
+                      name: item.brandName,
+                      price: item.price,
+                    }}
+                  />
+                </div>
+              ))}
         </div>
         {/* Pagination feture here  */}
         <PaginationDemo />
@@ -59,11 +131,11 @@ export function AllProducts() {
         </div>
         <div className="mx-auto grid w-full  items-start gap-6 md:grid-cols-[100px_1fr] lg:grid-cols-[120px_1fr]">
           <nav className="grid gap-4 text-sm text-muted-foreground sticky ">
-            <Link href="#">Relevance</Link>
-            <Link href="#">Trending</Link>
-            <Link href="#">Latest arrivals</Link>
-            <Link href="#">Price: Low to high</Link>
-            <Link href="#">Price: High to low</Link>
+            <Link to="/all?relevance=7">Relevance</Link>
+            <Link to="/all?relevance=8">Trending</Link>
+            <Link to="/all?relevance=9">Latest arrivals</Link>
+            <Link to={'/all?sortBy=priceLowToHigh'}>Price: Low to high</Link>
+            <Link to={'/all?sortBy=priceHighToLow'}>Price: High to low</Link>
           </nav>
         </div>
       </main>

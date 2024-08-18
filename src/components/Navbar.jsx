@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { CircleUser, Menu, Package2, Search, ShoppingCart } from 'lucide-react'
+import { Menu, Package2, Search, ShoppingCart } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
@@ -34,20 +34,20 @@ const Navbar = () => {
           to="/all"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
-          All
+          All&nbsp;Products
+        </Link>
+        <Link
+          to="/apparel-accessories"
+          className="text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Apparel&nbsp;&&nbsp;Accessories
         </Link>
 
         <Link
-          to="/shirts"
+          to="/lifestyle-gadgets"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
-          Shirts
-        </Link>
-        <Link
-          to="/shoes"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Shoes
+          Lifestyle&nbsp;&&nbsp;Gadgets
         </Link>
       </nav>
       <Sheet>
@@ -76,16 +76,16 @@ const Navbar = () => {
               All
             </Link>
             <Link
-              to="/shirts"
+              to="/apparel-accessories"
               className="text-muted-foreground hover:text-foreground"
             >
-              Shirts
+              Apparel&nbsp;&&nbsp;Accessories
             </Link>
             <Link
-              to="/shoes"
+              to="/lifecycle-gadgets"
               className="text-muted-foreground hover:text-foreground"
             >
-              Shoes
+              Lifestyle&nbsp;&&nbsp;Gadgets
             </Link>
           </nav>
         </SheetContent>
