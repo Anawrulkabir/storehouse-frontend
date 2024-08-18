@@ -81,11 +81,15 @@ export function AllProducts() {
         </div>
         <div className="mx-auto grid w-full  items-start gap-6 ">
           <nav className="grid gap-4 text-sm text-muted-foreground sticky">
-            <Link to="/all" className="font-semibold text-primary">
+            <Link to="/all" className=" focus:text-black focus:font-medium">
               All
             </Link>
             {links.map((link, index) => (
-              <Link key={index} to={`/all?subcategoryName=${link}`}>
+              <Link
+                key={index}
+                to={`/all?subcategoryName=${link}`}
+                className="focus:text-black focus:font-medium "
+              >
                 {link}
               </Link>
             ))}
@@ -131,11 +135,36 @@ export function AllProducts() {
         </div>
         <div className="mx-auto grid w-full  items-start gap-6 md:grid-cols-[100px_1fr] lg:grid-cols-[120px_1fr]">
           <nav className="grid gap-4 text-sm text-muted-foreground sticky ">
-            <Link to="/all?relevance=7">Relevance</Link>
-            <Link to="/all?relevance=8">Trending</Link>
-            <Link to="/all?relevance=9">Latest arrivals</Link>
-            <Link to={'/all?sortBy=priceLowToHigh'}>Price: Low to high</Link>
-            <Link to={'/all?sortBy=priceHighToLow'}>Price: High to low</Link>
+            <Link
+              to="/all?relevance=7"
+              className=" focus:text-black focus:font-medium"
+            >
+              Relevance
+            </Link>
+            <Link
+              to="/all?relevance=8"
+              className=" focus:text-black focus:font-medium"
+            >
+              Trending
+            </Link>
+            <Link
+              to="/all?relevance=9"
+              className=" focus:text-black focus:font-medium"
+            >
+              Latest arrivals
+            </Link>
+            <Link
+              to={'/all?sortBy=priceLowToHigh'}
+              className=" focus:text-black focus:font-medium"
+            >
+              Price: Low to high
+            </Link>
+            <Link
+              to={'/all?sortBy=priceHighToLow'}
+              className=" focus:text-black focus:font-medium"
+            >
+              Price: High to low
+            </Link>
           </nav>
         </div>
       </main>
