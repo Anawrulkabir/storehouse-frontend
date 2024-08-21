@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import BackButton from '../../components/Shared/Botton/BackButton'
 // import SignUp from '../signup/Signup'
-import Login from '../login/Login'
+// import Login from '../login/Login'
 
 export function Join() {
   const [defaultValue, setDefaultValue] = useState('login')
@@ -19,9 +19,9 @@ export function Join() {
         {/* <TabsContent value="signup">
           <SignUp setDefaultValue={setDefaultValue} />
         </TabsContent> */}
-        <TabsContent value="login">
+        {/* <TabsContent value="login">
           <Login setDefaultValue={setDefaultValue} />
-        </TabsContent>
+        </TabsContent> */}
       </Tabs>
       <BackButton />
     </div>
