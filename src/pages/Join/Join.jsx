@@ -3,8 +3,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useState } from 'react'
 
 import BackButton from '../../components/Shared/Botton/BackButton'
-// import SignUp from '../signup/Signup'
-// import Login from '../login/Login'
+import SignUp from '../signup/Signup'
+import Login from '../login/Login'
 
 export function Join() {
   const [defaultValue, setDefaultValue] = useState('login')
@@ -16,12 +16,12 @@ export function Join() {
           <TabsTrigger value="signup">Signup</TabsTrigger>
           <TabsTrigger value="login">Login</TabsTrigger>
         </TabsList>
-        {/* <TabsContent value="signup">
+        <TabsContent value="signup">
           <SignUp setDefaultValue={setDefaultValue} />
-        </TabsContent> */}
-        {/* <TabsContent value="login">
+        </TabsContent>
+        <TabsContent value="login">
           <Login setDefaultValue={setDefaultValue} />
-        </TabsContent> */}
+        </TabsContent>
       </Tabs>
       <BackButton />
     </div>
