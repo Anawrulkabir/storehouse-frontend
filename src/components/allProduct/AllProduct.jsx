@@ -129,12 +129,14 @@ export function AllProducts() {
         </div>
         <div className="">
           {isLoading ? (
-            skeleton.map((_, index) => (
-              <Skeleton
-                key={index}
-                className="h-[165px] w-[265px] rounded-xl"
-              />
-            ))
+            <div className="grid grid-cols-3 gap-3 p-4">
+              {skeleton.map((_, index) => (
+                <Skeleton
+                  key={index}
+                  className="h-[165px] w-[265px] rounded-xl"
+                />
+              ))}
+            </div>
           ) : totalProducts > 0 ? (
             <div className="grid grid-cols-3 gap-3  p-4">
               {products.map((item, index) => (
