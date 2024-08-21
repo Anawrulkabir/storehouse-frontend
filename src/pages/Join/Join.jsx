@@ -2,9 +2,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 import { useState } from 'react'
 
-import SignUp from '../signup/Signup'
 import BackButton from '../../components/Shared/Botton/BackButton'
 import Login from '../login/Login'
+import SignUp from '../signup/Signup'
 
 export function Join() {
   const [defaultValue, setDefaultValue] = useState('login')
