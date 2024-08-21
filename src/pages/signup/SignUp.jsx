@@ -38,7 +38,7 @@ const SignUp = ({ setDefaultValue }) => {
     const form = e.target
     const firstName = form.firstname.value
     const lastName = form.lastname.value
-    // const name = firstName + lastName
+    const name = firstName + lastName
     const email = form.email.value
     const password = form.password.value
     // const image = form.image.files[0]
@@ -50,7 +50,7 @@ const SignUp = ({ setDefaultValue }) => {
       // console.log(image_url)
       //2. User Registration
       const result = await createUser(email, password)
-      // console.log(result)
+      console.log(result)
 
       // 3. Save username and photo in firebase
       // await updateUserProfile(name, image_url)
