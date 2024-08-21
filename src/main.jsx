@@ -10,7 +10,7 @@ import { AllShoes } from './components/allProduct/AllShoes'
 import AuthProvider from './provider/AuthProvider'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import PrivateRoute from './routes/PrivateRoute'
-import { Join } from './pages/Join/Join'
+import { Join } from './pages/join/Join'
 
 const router = createBrowserRouter([
   {
