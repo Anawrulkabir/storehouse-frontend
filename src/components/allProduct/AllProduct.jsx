@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import SmallPriceTag from '../priceTag/SmallPriceTag'
 import { PaginationDemo } from '../pagination/PaginationDemo'
@@ -7,56 +7,60 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { useQuery } from '@tanstack/react-query'
 import { fetchProducts } from '../../api/productApi'
 import useAxiosCommon from '../../hooks/useAxiosCommon'
+import { useEffect, useState } from 'react'
 
 export function AllProducts() {
   const skeleton = Array.from({ length: 9 })
   const { search } = useLocation()
-  // console.log(search)
-  // const params = new URLSearchParams(search)
-  // const categoryName = params.get('categoryName')
-  // const subcategoryName = params.get('subcategoryName')
-  // const brandName = params.get('brandName')
-  // const minPrice = params.get('minPrice')
-  // const maxPrice = params.get('maxPrice')
-  // const startDate = params.get('startDate')
-  // const endDate = params.get('endDate')
-  // const relevance = params.get('relevance')
-  // const searchQuery = params.get('search')
-  // const sortBy = params.get('sortBy')
-  //
-  // const filters = {
-  //   categoryName,
-  //   subcategoryName,
-  //   brandName,
-  //   minPrice,
-  //   maxPrice,
-  //   startDate,
-  //   endDate,
-  //   relevance,
-  //   search,
-  //   sortBy,
-  //   searchQuery,
-  // }
-
-  // console.log(filters)
-
-  // const { data, isLoading, isError, error } = useQuery({
-  //   queryKey: ['products', filters],
-  //   queryFn: async () => await fetchProducts(filters),
-  // })
-
   const axiosCommon = useAxiosCommon()
+  const navigate = useNavigate()
+  const [query, setQuery] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 9
+
   const {
-    data: products = [],
+    data: response = {},
     isLoading,
+    isError,
     refetch,
   } = useQuery({
-    queryKey: ['products', search],
+    queryKey: ['products', search, currentPage],
     queryFn: async () => {
-      const { data } = await axiosCommon.get(`/all${search}`)
+      const params = new URLSearchParams(search)
+      params.set('page', currentPage)
+      params.set('limit', itemsPerPage)
+      const { data } = await axiosCommon.get(`/all?${params.toString()}`)
       return data
     },
   })
+
+  // Destructure the response to get the products and pagination info
+  const {
+    products = [],
+    totalProducts,
+    currentPage: serverPage,
+    totalPages,
+  } = response
+
+  useEffect(() => {
+    const params = new URLSearchParams(search)
+    setQuery(params.get('search') || '')
+  }, [search])
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const params = new URLSearchParams(search)
+    params.set('search', query)
+    navigate(`?${params.toString()}`)
+    setCurrentPage(1) // Reset to page 1 on new search
+  }
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage)
+    const params = new URLSearchParams(search)
+    params.set('page', newPage)
+    navigate(`?${params.toString()}`)
+  }
 
   const links = [
     'Bags',
@@ -74,7 +78,7 @@ export function AllProducts() {
 
   console.log(products)
   return (
-    <div className="flex min-h-screen ">
+    <div className="flex min-h-screen justify-between">
       <main className="flex min-h-[calc(100vh_-_theme(spacing.16))]  flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 border-r ">
         <div className="mx-auto grid w-full max-w-6xl gap-2">
           <h1 className="text-2xl text-gray-500 ">Collections</h1>
@@ -97,19 +101,43 @@ export function AllProducts() {
         </div>
       </main>
 
-      <div className="bg-zinc-100">
+      <div className="bg-zinc-100 flex flex-col items-center  w-full ">
         <h1 className="text-center mt-12 mb-8 text-3xl font-bold">
           Explore Our Products
         </h1>
-        <div className="grid grid-cols-3 gap-3  p-4">
-          {isLoading
-            ? skeleton.map((_, index) => (
-                <Skeleton
-                  key={index}
-                  className="h-[165px] w-[265px] rounded-xl"
-                />
-              ))
-            : products?.map((item, index) => (
+        <div className="mb-8 rounded-3xl">
+          {/* <label className="input border border-black shadow-lg flex items-center gap-2 w-96 md:min-w-[40rem]"> */}
+          <form
+            onSubmit={handleSearch}
+            className="input  flex items-center   md:min-w-[20rem] rounded-3xl "
+          >
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="grow py-2 px-4 w-full border rounded-l-3xl"
+              placeholder="Search"
+            />
+            <button
+              type="submit"
+              className="border py-2 px-3 rounded-r-3xl bg-green-500 text-white font-normal "
+            >
+              Search
+            </button>
+          </form>
+          {/* </label> */}
+        </div>
+        <div className="">
+          {isLoading ? (
+            skeleton.map((_, index) => (
+              <Skeleton
+                key={index}
+                className="h-[165px] w-[265px] rounded-xl"
+              />
+            ))
+          ) : totalProducts > 0 ? (
+            <div className="grid grid-cols-3 gap-3  p-4">
+              {products.map((item, index) => (
                 <div key={index} className="relative">
                   <img
                     src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
@@ -124,9 +152,24 @@ export function AllProducts() {
                   />
                 </div>
               ))}
+            </div>
+          ) : (
+            <div className="flex items-center justify-center ">
+              <p className="text-center font-bold text-4xl text-gray-300">
+                No Products Found
+              </p>
+            </div>
+          )}
         </div>
         {/* Pagination feture here  */}
-        <PaginationDemo />
+        {totalProducts > 0 && (
+          <PaginationDemo
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+            totalItems={products.total} // Assuming the server sends the total count
+            itemsPerPage={itemsPerPage}
+          />
+        )}
       </div>
 
       <main className="flex min-h-[calc(100vh_-_theme(spacing.16))]    flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 border-r">

@@ -9,6 +9,9 @@ import { AllShirts } from './components/allProduct/AllShirts'
 import { AllShoes } from './components/allProduct/AllShoes'
 import AuthProvider from './provider/AuthProvider'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+import PrivateRoute from './routes/PrivateRoute'
+import { Join } from './pages/Join/Join'
+import Login from './pages/Login/Login'
 
 const router = createBrowserRouter([
   {
@@ -21,17 +24,35 @@ const router = createBrowserRouter([
       },
       {
         path: '/all',
-        element: <AllProducts />,
+        element: (
+          <PrivateRoute>
+            <AllProducts />
+          </PrivateRoute>
+        ),
       },
       {
         path: '/apparel-accessories',
-        element: <AllShirts />,
+        element: (
+          <PrivateRoute>
+            <AllShirts />
+          </PrivateRoute>
+        ),
       },
       {
         path: '/lifestyle-gadgets',
-        element: <AllShoes />,
+        element: (
+          <PrivateRoute>
+            <AllShoes />
+          </PrivateRoute>
+        ),
       },
     ],
+  },
+
+  { path: '/join', element: <Join /> },
+  {
+    path: '/login',
+    element: <Login />,
   },
 ])
 

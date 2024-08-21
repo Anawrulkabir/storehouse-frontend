@@ -12,8 +12,11 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import useAuth from '../hooks/useAuth'
 
 const Navbar = () => {
+  const { logOut, user } = useAuth()
+  console.log(user)
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6 z-10">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
@@ -116,7 +119,8 @@ const Navbar = () => {
             <DropdownMenuItem>My Cart</DropdownMenuItem>
             <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+
+            <DropdownMenuItem>Join</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
