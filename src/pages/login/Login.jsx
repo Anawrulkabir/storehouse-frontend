@@ -48,7 +48,7 @@ const Login = ({ setDefaultValue }) => {
         description: 'Successfully signed in to your account.',
       })
     } catch (err) {
-      // console.log(err)
+      console.log(err)
 
       toast({
         variant: 'destructive',
@@ -69,7 +69,7 @@ const Login = ({ setDefaultValue }) => {
       })
       setLoading(false)
     } catch (err) {
-      // console.log(err)
+      console.log(err)
       toast({
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
@@ -79,7 +79,7 @@ const Login = ({ setDefaultValue }) => {
 
       setLoading(false)
     }
-    // console.log(email)
+    console.log(email)
   }
 
   // handle google signin
@@ -98,7 +98,7 @@ const Login = ({ setDefaultValue }) => {
       }, 2000)
     } catch (err) {
       setSpinLoading(false)
-      // console.log(err)
+      console.log(err)
       toast({
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
