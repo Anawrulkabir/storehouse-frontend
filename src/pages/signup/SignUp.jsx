@@ -25,7 +25,7 @@ const SignUp = ({ setDefaultValue }) => {
   const {
     createUser,
     signInWithGoogle,
-    updateUserProfile,
+    // updateUserProfile,
     loading,
     setLoading,
   } = useAuth()
@@ -38,22 +38,22 @@ const SignUp = ({ setDefaultValue }) => {
     const form = e.target
     const firstName = form.firstname.value
     const lastName = form.lastname.value
-    const name = firstName + lastName
+    // const name = firstName + lastName
     const email = form.email.value
     const password = form.password.value
-    const image = form.image.files[0]
+    // const image = form.image.files[0]
 
     try {
       setLoading(true)
       // 1. Upload image and get image url
-      const image_url = await imageUpload(image)
-      console.log(image_url)
+
+      // console.log(image_url)
       //2. User Registration
       const result = await createUser(email, password)
-      console.log(result)
+      // console.log(result)
 
       // 3. Save username and photo in firebase
-      await updateUserProfile(name, image_url)
+      // await updateUserProfile(name, image_url)
       navigate('/')
     } catch (err) {
       setLoading(false)
@@ -84,7 +84,7 @@ const SignUp = ({ setDefaultValue }) => {
       }, 2000)
     } catch (err) {
       setSpinLoading(false)
-      console.log(err)
+      // console.log(err)
       toast.error(err.message)
     }
   }
@@ -164,7 +164,7 @@ const SignUp = ({ setDefaultValue }) => {
               // TODO
               // onClick={() => {
               //   setDefaultValue('null')
-              //   console.log('hello')
+              //   // console.log('hello')
               // }}
               className="underline"
             >
