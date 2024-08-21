@@ -11,7 +11,6 @@ import AuthProvider from './provider/AuthProvider'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import PrivateRoute from './routes/PrivateRoute'
 import { Join } from './pages/Join/Join'
-// import Login from './pages/Login/Login'
 
 const router = createBrowserRouter([
   {
@@ -50,10 +49,6 @@ const router = createBrowserRouter([
   },
 
   { path: '/join', element: <Join /> },
-  // {
-  //   path: '/login',
-  //   element: <Login />,
-  // },
 ])
 
 const queryClient = new QueryClient()
