@@ -78,7 +78,7 @@ export function AllProducts() {
 
   // console.log(products)
   return (
-    <div className="flex min-h-screen justify-between">
+    <div className="flex min-h-screen justify-between ">
       <main className="flex min-h-[calc(100vh_-_theme(spacing.16))]  flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 border-r ">
         <div className="mx-auto grid w-full max-w-6xl gap-2">
           <h1 className="text-2xl text-gray-500 ">Collections</h1>
@@ -101,7 +101,7 @@ export function AllProducts() {
         </div>
       </main>
 
-      <div className="bg-zinc-100 flex flex-col items-center  w-full ">
+      <div className="bg-zinc-100 flex flex-col items-center  w-full pb-12">
         <h1 className="text-center mt-12 mb-8 text-3xl font-bold">
           Explore Our Products
         </h1>
