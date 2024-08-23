@@ -85,15 +85,26 @@ const Navbar = () => {
               Apparel&nbsp;&&nbsp;Accessories
             </Link>
             <Link
-              to="/lifecycle-gadgets"
+              to="/lifestyle-gadgets"
               className="text-muted-foreground hover:text-foreground"
             >
               Lifestyle&nbsp;&&nbsp;Gadgets
             </Link>
+            <Link to="/signup">
+              <button className="border-2 text-black w-full px-5 py-2 text-sm tracking-wide  capitalize transition-colors duration-300 transform  rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                Sign Up
+              </button>
+            </Link>
+
+            <Link to="/login">
+              <button className="w-full px-5 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                Login
+              </button>
+            </Link>
           </nav>
         </SheetContent>
       </Sheet>
-      <div>
+      <div className="hidden md:flex items-center justify-center">
         <Link to="/signup">
           <button className="border-2 text-black w-full px-5 py-2 text-sm tracking-wide  capitalize transition-colors duration-300 transform  rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
             Sign Up

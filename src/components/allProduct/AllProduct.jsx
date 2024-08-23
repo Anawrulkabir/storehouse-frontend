@@ -8,6 +8,16 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchProducts } from '../../api/productApi'
 import useAxiosCommon from '../../hooks/useAxiosCommon'
 import { useEffect, useState } from 'react'
+import { GoSortDesc } from 'react-icons/go'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 export function AllProducts() {
   const skeleton = Array.from({ length: 9 })
@@ -79,7 +89,7 @@ export function AllProducts() {
   // console.log(products)
   return (
     <div className="flex min-h-screen justify-between ">
-      <main className="flex min-h-[calc(100vh_-_theme(spacing.16))]  flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 border-r ">
+      <main className=" min-h-[calc(100vh_-_theme(spacing.16))]  flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 border-r hidden md:flex">
         <div className="mx-auto grid w-full max-w-6xl gap-2">
           <h1 className="text-2xl text-gray-500 ">Collections</h1>
         </div>
@@ -105,7 +115,7 @@ export function AllProducts() {
         <h1 className="text-center mt-12 mb-8 text-3xl font-bold">
           Explore Our Products
         </h1>
-        <div className="mb-8 rounded-3xl">
+        <div className="mb-8 rounded-3xl flex gap-3">
           {/* <label className="input border border-black shadow-lg flex items-center gap-2 w-96 md:min-w-[40rem]"> */}
           <form
             onSubmit={handleSearch}
@@ -125,11 +135,47 @@ export function AllProducts() {
               Search
             </button>
           </form>
+          <div className="md:hidden">
+            <Select>
+              <SelectTrigger className=""></SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Collection</SelectLabel>
+                  {links.map((link, index) => (
+                    <SelectItem
+                      key={index}
+                      value={link}
+                      // className="focus:text-black focus:font-medium "
+                    >
+                      <Link to={`/all?subcategoryName=${link}`}>{link}</Link>
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+                <SelectGroup>
+                  <SelectLabel>Sort By</SelectLabel>
+
+                  <SelectItem value="apple">
+                    {' '}
+                    <a
+                      href="/all?relevance=7"
+                      className=" focus:text-black focus:font-medium"
+                    >
+                      Relevance
+                    </a>
+                  </SelectItem>
+                  <SelectItem value="banana">Trending</SelectItem>
+                  <SelectItem value="blueberry">Latest arrivals</SelectItem>
+                  <SelectItem value="grapes">Price: Low to high</SelectItem>
+                  <SelectItem value="pineapple">Price: High to low</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
           {/* </label> */}
         </div>
         <div className="">
           {isLoading ? (
-            <div className="grid grid-cols-3 gap-3 p-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-3 md:p-4">
               {skeleton.map((_, index) => (
                 <Skeleton
                   key={index}
@@ -138,7 +184,7 @@ export function AllProducts() {
               ))}
             </div>
           ) : totalProducts > 0 ? (
-            <div className="grid grid-cols-3 gap-3  p-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-3  md:p-4">
               {products.map((item, index) => (
                 <div key={index} className="relative">
                   <img
@@ -174,7 +220,7 @@ export function AllProducts() {
         )}
       </div>
 
-      <main className="flex min-h-[calc(100vh_-_theme(spacing.16))]    flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 border-r">
+      <main className=" min-h-[calc(100vh_-_theme(spacing.16))]    flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 border-r hidden md:flex">
         <div className="mx-auto grid w-full max-w-6xl gap-2">
           <h1 className="text-2xl text-gray-500 "> Sort by</h1>
         </div>

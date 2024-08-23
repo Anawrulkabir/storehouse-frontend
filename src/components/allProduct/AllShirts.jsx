@@ -7,7 +7,7 @@ export function AllShirts() {
   const elements = Array.from({ length: 50 })
   return (
     <div className="flex min-h-screen ">
-      <main className="flex min-h-[calc(100vh_-_theme(spacing.16))]  flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 border-r ">
+      <main className="hidden md:flex min-h-[calc(100vh_-_theme(spacing.16))]  flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 border-r ">
         <div className="mx-auto grid w-full max-w-6xl gap-2">
           <h1 className="text-2xl text-gray-500 ">Collections</h1>
         </div>
@@ -53,7 +53,7 @@ export function AllShirts() {
         <PaginationDemo />
       </div>
 
-      <main className="flex min-h-[calc(100vh_-_theme(spacing.16))]    flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 border-r">
+      <main className="hidden md:flex min-h-[calc(100vh_-_theme(spacing.16))]    flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10 border-r">
         <div className="mx-auto grid w-full max-w-6xl gap-2">
           <h1 className="text-2xl text-gray-500 "> Sort by</h1>
         </div>
