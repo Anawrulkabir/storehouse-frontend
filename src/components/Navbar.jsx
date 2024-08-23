@@ -53,6 +53,9 @@ const Navbar = () => {
           Lifestyle&nbsp;&&nbsp;Gadgets
         </Link>
       </nav>
+      <nav className="md:hidden font-bold text-lg px-3">
+        <p>Storehouse</p>
+      </nav>
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="shrink-0 md:hidden">
