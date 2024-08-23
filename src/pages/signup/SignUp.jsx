@@ -31,7 +31,7 @@ const SignUp = ({ setDefaultValue }) => {
   } = useAuth()
 
   const [spinLoading, setSpinLoading] = useState(false)
-  const from = location?.state || '/home'
+  const from = location?.state || '/'
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -91,7 +91,7 @@ const SignUp = ({ setDefaultValue }) => {
   return (
     <>
       {/* <div className="flex items-center justify-center h-screen "> */}
-      <Card className="mx-auto max-w-sm">
+      <Card className="mx-auto max-w-sm mt-12 mb-20">
         <CardHeader>
           <CardTitle className="text-xl">Sign Up</CardTitle>
           <CardDescription>

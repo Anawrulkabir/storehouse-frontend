@@ -10,6 +10,8 @@ import { AllShoes } from './components/allProduct/AllShoes'
 import AuthProvider from './provider/AuthProvider'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import Error404 from './pages/404/Error404'
+import Login from './pages/login/Login'
+import SignUp from './pages/signup/Signup'
 // import PrivateRoute from './routes/PrivateRoute'
 // import { Join } from './pages/join/Join'
 
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
           <AllShoes />
           // </PrivateRoute>
         ),
+      },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/signup',
+        element: <SignUp />,
       },
     ],
   },

@@ -23,7 +23,7 @@ const Login = ({ setDefaultValue }) => {
   const location = useLocation()
   const { toast } = useToast()
 
-  const from = location?.state || '/home'
+  const from = location?.state || '/'
   const { signInWithGoogle, signIn, loading, setLoading, resetPassword } =
     useAuth()
   const [email, setEmail] = useState('')
@@ -109,7 +109,7 @@ const Login = ({ setDefaultValue }) => {
   }
 
   return (
-    <>
+    <div className="">
       {/* <div className="flex items-center justify-center h-screen "> */}
       <Card className="mx-auto max-w-sm ">
         <CardHeader>
@@ -178,7 +178,7 @@ const Login = ({ setDefaultValue }) => {
           </div>
         </CardContent>
       </Card>
-    </>
+    </div>
   )
 }
 
