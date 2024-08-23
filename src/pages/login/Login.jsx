@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useAuth from '../../hooks/useAuth'
 // import toast from 'react-hot-toast'
 import { useState } from 'react'
@@ -109,7 +109,7 @@ const Login = ({ setDefaultValue }) => {
   }
 
   return (
-    <div className="">
+    <div className="h-screen flex items-center ">
       {/* <div className="flex items-center justify-center h-screen "> */}
       <Card className="mx-auto max-w-sm ">
         <CardHeader>
@@ -168,13 +168,15 @@ const Login = ({ setDefaultValue }) => {
 
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{' '}
-            <button
-              className="underline"
-              // TODO
-              // onClick={() => setDefaultValue('signup')}
-            >
-              Sign up
-            </button>
+            <Link to="/signup">
+              <button
+                className="underline"
+                // TODO
+                // onClick={() => setDefaultValue('signup')}
+              >
+                Sign up
+              </button>
+            </Link>
           </div>
         </CardContent>
       </Card>

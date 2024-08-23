@@ -93,6 +93,46 @@ const Navbar = () => {
             >
               Lifestyle&nbsp;&&nbsp;Gadgets
             </Link>
+
+            {!user ? (
+              <>
+                <Link to="/signup">
+                  <button className="border-2 text-black w-full px-5 py-2 text-sm tracking-wide  capitalize transition-colors duration-300 transform  rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                    Sign Up
+                  </button>
+                </Link>
+
+                <Link to="/login">
+                  <button className="w-full px-5 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                    Login
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={logOut}
+                  className="border-2  bg-red-600 text-white w-full px-5 py-2 text-sm tracking-wide  capitalize transition-colors duration-300 transform  rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80"
+                >
+                  Logout
+                </button>
+              </>
+            )}
+          </nav>
+        </SheetContent>
+      </Sheet>
+      <div className="hidden md:flex items-center justify-center">
+        {user ? (
+          <>
+            <button
+              onClick={logOut}
+              className="border-2 text-white bg-red-700 w-full px-5 py-2 text-sm tracking-wide  capitalize transition-colors duration-300 transform  rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
             <Link to="/signup">
               <button className="border-2 text-black w-full px-5 py-2 text-sm tracking-wide  capitalize transition-colors duration-300 transform  rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
                 Sign Up
@@ -104,21 +144,8 @@ const Navbar = () => {
                 Login
               </button>
             </Link>
-          </nav>
-        </SheetContent>
-      </Sheet>
-      <div className="hidden md:flex items-center justify-center">
-        <Link to="/signup">
-          <button className="border-2 text-black w-full px-5 py-2 text-sm tracking-wide  capitalize transition-colors duration-300 transform  rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-            Sign Up
-          </button>
-        </Link>
-
-        <Link to="/login">
-          <button className="w-full px-5 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-            Login
-          </button>
-        </Link>
+          </>
+        )}
       </div>
       {/* <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4  justify-between ">
         <form className="ml-auto flex-1 sm:flex-initial">

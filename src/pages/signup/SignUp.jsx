@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useAuth from '../../hooks/useAuth'
 
 import { Button } from '@/components/ui/button'
@@ -160,16 +160,9 @@ const SignUp = ({ setDefaultValue }) => {
           </div>
           <div className="mt-4 text-center text-sm">
             Already have an account?{' '}
-            <button
-              // TODO
-              // onClick={() => {
-              //   setDefaultValue('null')
-              //   // console.log('hello')
-              // }}
-              className="underline"
-            >
-              Sign in
-            </button>
+            <Link to="/login">
+              <button className="underline">Sign in</button>
+            </Link>
           </div>
         </CardContent>
       </Card>
