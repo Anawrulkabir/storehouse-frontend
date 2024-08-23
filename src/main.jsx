@@ -9,6 +9,7 @@ import { AllShirts } from './components/allProduct/AllShirts'
 import { AllShoes } from './components/allProduct/AllShoes'
 import AuthProvider from './provider/AuthProvider'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+import Error404 from './pages/404/Error404'
 // import PrivateRoute from './routes/PrivateRoute'
 // import { Join } from './pages/join/Join'
 
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
+    errorElement: <Error404 />,
     children: [
       {
         path: '/',
@@ -47,8 +49,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-
-  // { path: '/join', element: <Join /> },
 ])
 
 const queryClient = new QueryClient()

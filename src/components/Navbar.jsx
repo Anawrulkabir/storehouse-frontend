@@ -18,7 +18,7 @@ const Navbar = () => {
   const { logOut, user } = useAuth()
   // console.log(user)
   return (
-    <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6 z-10">
+    <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6 z-10 justify-between">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         <Link
           to="/"
@@ -93,7 +93,20 @@ const Navbar = () => {
           </nav>
         </SheetContent>
       </Sheet>
-      <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4  justify-between ">
+      <div>
+        <Link to="/signup">
+          <button className="border-2 text-black w-full px-5 py-2 text-sm tracking-wide  capitalize transition-colors duration-300 transform  rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            Sign Up
+          </button>
+        </Link>
+
+        <Link to="/login">
+          <button className="w-full px-5 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            Login
+          </button>
+        </Link>
+      </div>
+      {/* <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4  justify-between ">
         <form className="ml-auto flex-1 sm:flex-initial">
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -111,19 +124,21 @@ const Navbar = () => {
               size="icon"
               className="rounded-md border"
             >
-              <ShoppingCart className="h-5 w-5" />
+              <button className="w-full px-5 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                Join
+              </button>
               <span className="sr-only">Toggle user menu</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>My Cart</DropdownMenuItem>
+            <DropdownMenuItem></DropdownMenuItem>
             <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
 
             <DropdownMenuItem>Join</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
+      </div> */}
     </header>
   )
 }
